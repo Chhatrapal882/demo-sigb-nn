@@ -1,11 +1,22 @@
 import express from 'express';
 import mongoose from "mongoose"
+import auth from './routes/auth'
+
 var app = express();
+app.use(express.json());
 
-
-app.get('/', function (req, res) {
-   res.send('Hello World');
+mongoose.connect(
+    'mongodb+srv://chhatrapal:lkBaiK5u3WOVBWat@cluster0.ni490.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+,{
+    useNewUrlParser:true,
+    useUnifiedTopology:true,
+    useNewUrlParser:true
 })
+.then(res=>console.log('db is connected'))
+.catch(err=>console.log(err))
+
+// app.post('/',auth)
+
 
 const port = 8080
 var server = app.listen(port, function () {
